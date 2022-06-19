@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
   
   # Transfer config file snippets into VM
   fw.vm.provision "file", source: "files", destination: "files"
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  fw.vm.synced_folder ".", "/vagrant", disabled: true
 
   # Bootstrap OPNsense
   fw.vm.provision 'shell', inline: <<-SHELL
