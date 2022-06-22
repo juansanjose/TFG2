@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
     # # Change sudoers file to reference user instead of group
     sed -i '' -e 's/^%//' /usr/local/etc/sudoers.d/vagrant
     # # Reboot the system
+    cp /home/vagrant/files/customnmap.xml /usr/local/opnsense/scripts/suricata/metadata/rules
 
     cp -f files/config2.xml /usr/local/etc/config.xml
 
