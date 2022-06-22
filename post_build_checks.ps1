@@ -72,13 +72,23 @@ function post_build_checks {
     }
     Write-Host ''
 
-    Write-Host '[*] Verifying that Velociraptor is reachable...'
-    $VELOCIRAPTOR_CHECK = download -URL 'https://192.168.56.105:9999' -SuccessOn401
-    if ($VELOCIRAPTOR_CHECK -eq $false) {
-        Write-Host '[!] Velociraptor was unreachable and may not have installed correctly.' -ForegroundColor red
+    Write-Host '[*] Verifying that Guacamole is reachable...'
+    $GUACAMOLE_CHECK = download -URL 'http://192.168.56.105:8080/guacamole' -PatternToMatch 'Apache Software'
+    if ($GUACAMOLE_CHECK -eq $false) {
+        Write-Host '[!] Guacamole was unreachable and may not have installed correctly.' -ForegroundColor red
     }
     else {
-        Write-Host '  ['$($checkmark)'] Velociraptor is running and reachable!' -ForegroundColor Green
+        Write-Host '  ['$($checkmark)'] Guacamole is running and reachable!' -ForegroundColor Green
+    }
+    Write-Host ''
+
+    Write-Host '[*] Verifying that Opnsense is reachable...'
+    $ATA_CHECK = download -URL 'https://192.168.100.111' -SuccessOn401
+    if ($ATA_CHECK -eq $false) {
+        Write-Host '[!] Opnsense was unreachable and may not have installed correctly.' -ForegroundColor red
+    }
+    else {
+        Write-Host '  ['$($checkmark)'] Opnsense is running and reachable!' -ForegroundColor Green
     }
     Write-Host ''
 
